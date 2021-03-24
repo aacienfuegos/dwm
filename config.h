@@ -108,6 +108,8 @@ static Key keys[] = {
 
 	// Applications
 	{ MODKEY, XK_z,		spawn,		SHCMD("zathura") },
+	{ MODKEY, XK_p,		spawn,		SHCMD(TERMINAL " -e pulsemixer") },
+	{ MODKEY,	XK_r,		spawn,		SHCMD(TERMINAL " -e lf") },
 	{ 0, XK_Print,		spawn,		SHCMD("flameshot gui") },
 
 	// Media keys
