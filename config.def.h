@@ -47,7 +47,7 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
+	//{ "><>",      NULL },    [> no layout function means floating behavior <]
 	{ "[M]",      monocle },
 };
 
@@ -87,16 +87,16 @@ static Key keys[] = {
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+	{ MODKEY,                       XK_equal,      incnmaster,     {.i = +1 } },
+	{ MODKEY,                       XK_minus,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	//{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,             XK_q,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	//{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+	//{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+	//{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_Tab,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_Tab,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -108,9 +108,18 @@ static Key keys[] = {
 
 	// Applications
 	{ MODKEY, XK_z,		spawn,		SHCMD("zathura") },
-	{ MODKEY, XK_p,		spawn,		SHCMD(TERMINAL " -e pulsemixer") },
+	{ MODKEY, XK_v,		spawn,		SHCMD(TERMINAL " -e pulsemixer") },
 	{ MODKEY,	XK_r,		spawn,		SHCMD(TERMINAL " -e lf") },
 	{ 0, XK_Print,		spawn,		SHCMD("flameshot gui") },
+	{ MODKEY, XK_n,		spawn,		SHCMD(TERMINAL " -e newsboat") },
+	{ MODKEY, XK_m,		spawn,		SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks") },
+
+	// Dmenu
+	{ MODKEY, XK_e,		spawn,		SHCMD("dmenu_bookmark") },
+	{ MODKEY, XK_d,		spawn,		SHCMD("setdisplay") },
+	{ MODKEY, XK_p,		spawn,		SHCMD("passmenu") },
+	{ MODKEY, XK_u,		spawn,		SHCMD("dmenuunicode") },
+	{ MODKEY, XK_BackSpace,		spawn,		SHCMD("sysact") },
 
 	// Media keys
 	{ 0, XF86XK_AudioMute,		spawn,		SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") },
