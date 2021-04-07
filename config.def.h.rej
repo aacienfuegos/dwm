@@ -1,13 +1,11 @@
---- config.def.h
-+++ config.def.h
-@@ -49,7 +49,9 @@ static const Layout layouts[] = {
- 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
- 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
- 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
--	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
-+	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} }, \
-+	{ MODKEY|Mod4Mask,              KEY,      tagnextmon,     {.ui = 1 << TAG} }, \
-+	{ MODKEY|Mod4Mask|ShiftMask,    KEY,      tagprevmon,     {.ui = 1 << TAG} },
+--- config.def.h	Tue Dec 04 21:54:44 2012 +0200
++++ config.def.h	Tue Dec 04 21:54:44 2012 +0200
+@@ -54,6 +54,8 @@
+ static const char *termcmd[]  = { "urxvtc", NULL };
+ static const char *filemancmd[]  = { "thunar", NULL };
  
- /* helper for spawning shell commands in the pre dwm-5.0 fashion */
- #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
++#include "selfrestart.c"
++
+ static Key keys[] = {
+ 	/* modifier                     key        function        argument */
+ 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
