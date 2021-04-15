@@ -5,22 +5,28 @@
 #define TERMCLASS "St"
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int gappih    = 20;       /* horiz inner gap between windows */
+static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
+static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    = 30;       /* vert outer gap between windows and screen edge */
+static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10", "JoyPixels:pixelsize=10:antialias=true:autohint=true"  };
 //static char dmenufont[]       = "monospace:size=10";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+static const char col_gray1[]       = "#2e3440";
+static const char col_gray2[]       = "#4c566a";
+static const char col_gray3[]       = "#a5abb6";
+static const char col_gray4[]       = "#d8dee9";
+static const char col_cyan[]        = "#6d96a5";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	/* [SchemeSel]  = { col_gray4, col_cyan,  col_cyan  }, */
+	[SchemeSel]  = { col_gray1, col_cyan,  col_cyan  },
 };
 
 /* tagging */
@@ -93,6 +99,22 @@ static Key keys[] = {
 	{ MODKEY,                       XK_minus,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ ALTKEY|MODKEY,              XK_k,      incrgaps,       {.i = +3 } },
+	{ ALTKEY|MODKEY,              XK_j,      incrgaps,       {.i = -3 } },
+	/* { ALTKEY|MODKEY|ShiftMask,    XK_h,      incrogaps,      {.i = +1 } }, */
+	/* { ALTKEY|MODKEY|ShiftMask,    XK_l,      incrogaps,      {.i = -1 } }, */
+	/* { ALTKEY|MODKEY|ControlMask,  XK_h,      incrigaps,      {.i = +1 } }, */
+	/* { ALTKEY|MODKEY|ControlMask,  XK_l,      incrigaps,      {.i = -1 } }, */
+	{ MODKEY,              XK_g,      togglegaps,     {0} },
+	{ MODKEY|ShiftMask,    XK_g,      defaultgaps,    {0} },
+	/* { ALTKEY,                       XK_y,      incrihgaps,     {.i = +1 } }, */
+	/* { ALTKEY,                       XK_o,      incrihgaps,     {.i = -1 } }, */
+	/* { ALTKEY|ControlMask,           XK_y,      incrivgaps,     {.i = +1 } }, */
+	/* { ALTKEY|ControlMask,           XK_o,      incrivgaps,     {.i = -1 } }, */
+	/* { ALTKEY|MODKEY,              XK_y,      incrohgaps,     {.i = +1 } }, */
+	/* { ALTKEY|MODKEY,              XK_o,      incrohgaps,     {.i = -1 } }, */
+	/* { ALTKEY|ShiftMask,             XK_y,      incrovgaps,     {.i = +1 } }, */
+	/* { ALTKEY|ShiftMask,             XK_o,      incrovgaps,     {.i = -1 } }, */
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	//{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,             XK_q,      killclient,     {0} },
@@ -118,10 +140,15 @@ static Key keys[] = {
 
 	// Dmenu
 	{ MODKEY, XK_e,		spawn,		SHCMD("dmenu_bookmark") },
-	{ MODKEY, XK_d,		spawn,		SHCMD("setdisplay") },
-	{ MODKEY, XK_p,		spawn,		SHCMD("passmenu") },
+	{ MODKEY|ShiftMask, XK_d,		spawn,		SHCMD("setdisplay") },
+	{ MODKEY, XK_d,		spawn,		SHCMD("passmenu") },
 	{ MODKEY, XK_u,		spawn,		SHCMD("dmenuunicode") },
 	{ MODKEY, XK_BackSpace,		spawn,		SHCMD("sysact") },
+
+	// Music
+	{ MODKEY, XK_p,		spawn,		SHCMD("mpc toggle") },
+	{ MODKEY, XK_bracketleft,		spawn,		SHCMD("mpc prev") },
+	{ MODKEY, XK_bracketright,		spawn,		SHCMD("mpc next") },
 
 	// Media keys
 	{ 0, XF86XK_AudioMute,		spawn,		SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") },
@@ -130,7 +157,7 @@ static Key keys[] = {
 	{ 0, XF86XK_AudioPrev,		spawn,		SHCMD("mpc prev") },
 	{ 0, XF86XK_AudioNext,		spawn,		SHCMD("mpc next") },
 	{ 0, XF86XK_AudioPause,		spawn,		SHCMD("mpc pause") },
-	{ 0, XF86XK_AudioPlay,		spawn,		SHCMD("mpc play") },
+	{ 0, XF86XK_AudioPlay,		spawn,		SHCMD("mpc toggle") },
 	{ 0, XF86XK_AudioStop,		spawn,		SHCMD("mpc stop") },
 	{ 0, XF86XK_AudioRewind,	spawn,		SHCMD("mpc seek -10") },
 	{ 0, XF86XK_AudioForward,	spawn,		SHCMD("mpc seek +10") },
@@ -145,7 +172,7 @@ static Key keys[] = {
 	{ 0, XF86XK_TaskPane,		spawn,		SHCMD(TERMINAL " -e htop") },
 	{ 0, XF86XK_Mail,		spawn,		SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks") },
 	{ 0, XF86XK_MyComputer,		spawn,		SHCMD(TERMINAL " -e lf /") },
-	{ 0, XF86XK_Battery,		spawn,		SHCMD("") }, 
+	{ 0, XF86XK_Battery,		spawn,		SHCMD("") },
 	{ 0, XF86XK_Launch1,		spawn,		SHCMD("xset dpms force off") },
 	{ 0, XF86XK_TouchpadToggle,	spawn,		SHCMD("(synclient | grep 'TouchpadOff.*1' && synclient TouchpadOff=0) || synclient TouchpadOff=1") },
 	{ 0, XF86XK_TouchpadOff,	spawn,		SHCMD("synclient TouchpadOff=1") },
@@ -164,7 +191,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
     { MODKEY|ShiftMask,             XK_r,      self_restart,   {0} },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} }, 
+	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} },
 };
 
 /* button definitions */
@@ -185,3 +212,4 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
+
