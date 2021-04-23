@@ -135,13 +135,14 @@ static Key keys[] = {
 	{ MODKEY, XK_v,		spawn,		SHCMD(TERMINAL " -e pulsemixer") },
 	{ MODKEY,	XK_r,		spawn,		SHCMD(TERMINAL " -e lf") },
 	{ 0, XK_Print,		spawn,		SHCMD("flameshot gui") },
-	{ MODKEY, XK_n,		spawn,		SHCMD(TERMINAL " -e newsboat") },
+	{ MODKEY, XK_n,		spawn,		SHCMD(TERMINAL " -e ncmpcpp") },
+	{ MODKEY, XK_f,		spawn,		SHCMD(TERMINAL " -e newsboat; pkill -RTMIN+6 dwmblocks") },
 	{ MODKEY, XK_m,		spawn,		SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks") },
 
 	// Dmenu
 	{ MODKEY, XK_e,		spawn,		SHCMD("dmenu_bookmark") },
-	{ MODKEY|ShiftMask, XK_d,		spawn,		SHCMD("setdisplay") },
-	{ MODKEY, XK_d,		spawn,		SHCMD("passmenu") },
+	{ MODKEY, XK_d,		spawn,		SHCMD("setdisplay") },
+	{ MODKEY, XK_s,		spawn,		SHCMD("passmenu") },
 	{ MODKEY, XK_u,		spawn,		SHCMD("dmenuunicode") },
 	{ MODKEY, XK_BackSpace,		spawn,		SHCMD("sysact") },
 
