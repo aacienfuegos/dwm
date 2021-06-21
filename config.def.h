@@ -145,6 +145,7 @@ static Key keys[] = {
 	{ MODKEY, XK_s,		spawn,		SHCMD("passmenu") },
 	{ MODKEY, XK_u,		spawn,		SHCMD("dmenuunicode") },
 	{ MODKEY, XK_BackSpace,		spawn,		SHCMD("sysact") },
+	{ MODKEY, XK_t,		spawn,		SHCMD("dmenu_translate -sl es -tl en") },
 
 	// Music
 	{ MODKEY, XK_p,		spawn,		SHCMD("mpc toggle") },
