@@ -140,12 +140,13 @@ static Key keys[] = {
 	{ MODKEY, XK_m,		spawn,		SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks") },
 
 	// Dmenu
-	{ MODKEY, XK_e,		spawn,		SHCMD("dmenu_bookmark") },
-	{ MODKEY, XK_d,		spawn,		SHCMD("setdisplay") },
-	{ MODKEY, XK_s,		spawn,		SHCMD("passmenu") },
-	{ MODKEY, XK_u,		spawn,		SHCMD("dmenuunicode") },
+	{ MODKEY, XK_e,				spawn,		SHCMD("dmenu_bookmark") },
+	{ MODKEY, XK_d,				spawn,		SHCMD("setdisplay") },
+	{ MODKEY, XK_s,				spawn,		SHCMD("passmenu") },
+	{ MODKEY, XK_u,				spawn,		SHCMD("dmenuunicode") },
 	{ MODKEY, XK_BackSpace,		spawn,		SHCMD("sysact") },
-	{ MODKEY, XK_t,		spawn,		SHCMD("dmenu_translate -sl es -tl en") },
+	{ MODKEY, XK_t,				spawn,		SHCMD("dmenu_translate -sl es -tl en") },
+	{ MODKEY|ShiftMask, XK_t,	spawn,		SHCMD("dmenu_translate") },
 
 	// Music
 	{ MODKEY, XK_p,		spawn,		SHCMD("mpc toggle") },
