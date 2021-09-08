@@ -33,10 +33,10 @@ static const char *colors[][3]      = {
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
-	/* xprop(1):
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
-	 */
+/* xprop(1):
+*	WM_CLASS(STRING) = instance, class
+*	WM_NAME(STRING) = title
+*/
 	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
 	/* { "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 }, */
 	/* { "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 }, */
@@ -62,16 +62,16 @@ static const Layout layouts[] = {
 #define MODKEY Mod4Mask
 #define ALTKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
-	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} }, \
-	{ MODKEY|ALTKEY,              KEY,      tagnextmon,     {.ui = 1 << TAG} }, \
+{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
+{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} }, \
+{ MODKEY|ALTKEY,              KEY,      tagnextmon,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ALTKEY|ShiftMask,    KEY,      tagprevmon,     {.ui = 1 << TAG} },
 #define STACKKEYS(MOD,ACTION) \
-	{ MOD,	XK_j,	ACTION##stack,	{.i = INC(+1) } }, \
+{ MOD,	XK_j,	ACTION##stack,	{.i = INC(+1) } }, \
 	{ MOD,	XK_k,	ACTION##stack,	{.i = INC(-1) } }, \
-	{ MOD,  XK_v,   ACTION##stack,  {.i = 0 } }, \
+{ MOD,  XK_v,   ACTION##stack,  {.i = 0 } }, \
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -149,14 +149,18 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask, XK_t,	spawn,		SHCMD("dmenu_translate") },
 
 	// Music
-	{ MODKEY, XK_p,		spawn,		SHCMD("mpc toggle") },
-	{ MODKEY, XK_bracketleft,		spawn,		SHCMD("mpc prev") },
-	{ MODKEY, XK_bracketright,		spawn,		SHCMD("mpc next") },
+	{ MODKEY, XK_p,				spawn,		SHCMD("playback play-pause") },
+	{ MODKEY, XK_bracketleft,	spawn,		SHCMD("playback previous") },
+	{ MODKEY, XK_bracketright,	spawn,		SHCMD("playback next") },
+	{ MODKEY|ShiftMask, XK_p,	spawn,		SHCMD("playback stop") },
+	{ MODKEY, XK_semicolon,		spawn,		SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") },
+	{ MODKEY, XK_apostrophe,	spawn,		SHCMD("pamixer --allow-boost -d 2; kill -44 $(pidof dwmblocks)") },
+	{ MODKEY, XK_backslash,		spawn,		SHCMD("pamixer --allow-boost -i 2; kill -44 $(pidof dwmblocks)") },
 
 	// Media keys
 	{ 0, XF86XK_AudioMute,		spawn,		SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") },
-	{ 0, XF86XK_AudioRaiseVolume,	spawn,		SHCMD("pamixer --allow-boost -i 3; kill -44 $(pidof dwmblocks)") },
-	{ 0, XF86XK_AudioLowerVolume,	spawn,		SHCMD("pamixer --allow-boost -d 3; kill -44 $(pidof dwmblocks)") },
+	{ 0, XF86XK_AudioRaiseVolume,	spawn,		SHCMD("pamixer --allow-boost -i 2; kill -44 $(pidof dwmblocks)") },
+	{ 0, XF86XK_AudioLowerVolume,	spawn,		SHCMD("pamixer --allow-boost -d 2; kill -44 $(pidof dwmblocks)") },
 	{ 0, XF86XK_AudioPrev,		spawn,		SHCMD("mpc prev") },
 	{ 0, XF86XK_AudioNext,		spawn,		SHCMD("mpc next") },
 	{ 0, XF86XK_AudioPause,		spawn,		SHCMD("mpc pause") },
@@ -192,7 +196,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-    { MODKEY|ShiftMask,             XK_r,      self_restart,   {0} },
+	{ MODKEY|ShiftMask,             XK_r,      self_restart,   {0} },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} },
 };
