@@ -138,6 +138,7 @@ static Key keys[] = {
 	{ MODKEY, XK_n,		spawn,		SHCMD(TERMINAL " -e ncmpcpp; pkill -RTMIN+11 dwmblocks") },
 	{ MODKEY, XK_f,		spawn,		SHCMD(TERMINAL " -e newsboat; pkill -RTMIN+6 dwmblocks") },
 	{ MODKEY, XK_m,		spawn,		SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks") },
+	{ MODKEY, XK_c,		spawn,		SHCMD("calendar") },
 
 	// Dmenu
 	{ MODKEY, XK_e,				spawn,		SHCMD("dmenu_bookmark") },
