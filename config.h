@@ -141,13 +141,13 @@ static Key keys[] = {
 	{ MODKEY, XK_c,		spawn,		SHCMD("calendar") },
 
 	// Dmenu
-	{ MODKEY, XK_e,				spawn,		SHCMD("dmenu_bookmark") },
-	{ MODKEY, XK_d,				spawn,		SHCMD("setdisplay") },
+	{ MODKEY, XK_e,				spawn,		SHCMD("dmbookmark") },
+	{ MODKEY, XK_d,				spawn,		SHCMD("dmdisplay") },
 	{ MODKEY, XK_s,				spawn,		SHCMD("passmenu") },
-	{ MODKEY, XK_u,				spawn,		SHCMD("dmenuunicode") },
-	{ MODKEY, XK_BackSpace,		spawn,		SHCMD("sysact") },
-	{ MODKEY, XK_t,				spawn,		SHCMD("dmenu_translate -sl es -tl en") },
-	{ MODKEY|ShiftMask, XK_t,	spawn,		SHCMD("dmenu_translate") },
+	{ MODKEY, XK_u,				spawn,		SHCMD("dmunicode") },
+	{ MODKEY, XK_BackSpace,		spawn,		SHCMD("dmsysact") },
+	{ MODKEY, XK_t,				spawn,		SHCMD("dmtranslate -sl es -tl en") },
+	{ MODKEY|ShiftMask, XK_t,	spawn,		SHCMD("dmtranslate") },
 
 	// Music
 	{ MODKEY, XK_p,				spawn,		SHCMD("playback play-pause") },
