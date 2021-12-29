@@ -133,7 +133,7 @@ static Key keys[] = {
 	// Applications
 	{ MODKEY, XK_z,		spawn,		SHCMD("zathura") },
 	{ MODKEY, XK_v,		spawn,		SHCMD(TERMINAL " -e pulsemixer") },
-	{ MODKEY,	XK_o,		spawn,		SHCMD(TERMINAL " -e lf") },
+	{ MODKEY,	XK_o,		spawn,		SHCMD(TERMINAL " -e lfrun") },
 	{ 0, XK_Print,		spawn,		SHCMD("flameshot gui") },
 	{ MODKEY, XK_n,		spawn,		SHCMD(TERMINAL " -e ncmpcpp; pkill -RTMIN+11 dwmblocks") },
 	{ MODKEY, XK_f,		spawn,		SHCMD(TERMINAL " -e newsboat; pkill -RTMIN+6 dwmblocks") },
