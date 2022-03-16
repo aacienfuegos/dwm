@@ -143,7 +143,7 @@ static Key keys[] = {
 	// Dmenu
 	{ MODKEY, XK_e,				spawn,		SHCMD("dmbookmark") },
 	{ MODKEY, XK_d,				spawn,		SHCMD("dmdisplay") },
-	{ MODKEY, XK_s,				spawn,		SHCMD("passmenu") },
+	{ MODKEY, XK_s,				spawn,		SHCMD("dmbw") },
 	{ MODKEY, XK_u,				spawn,		SHCMD("dmunicode") },
 	{ MODKEY, XK_BackSpace,		spawn,		SHCMD("dmsysact") },
 	{ MODKEY, XK_t,				spawn,		SHCMD("dmtranslate -sl es -tl en") },
